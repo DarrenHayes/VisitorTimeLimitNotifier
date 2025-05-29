@@ -51,7 +51,7 @@ app.post('/webhook/visitor-signed-out', async (req, res) => {
     const duration = Math.round((signedOut - signedIn) / 60000); // duration in minutes
 
     // Retrieve the configured time limit from your storage or environment
-    const timeLimit = parseInt(process.env.VISITOR_TIME_LIMIT || "60", 10); // fallback default
+    const timeLimit = parseInt(process.env.VISITOR_TIME_LIMIT || "180", 10); // fallback default
 
     // Attach a message to the visitor entry
     if (duration > timeLimit) {
