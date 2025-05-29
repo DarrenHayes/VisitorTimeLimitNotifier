@@ -1,5 +1,5 @@
 // Import required modules
-require('dotenv').config();  // Safe to include for local; only affects local dev
+//require('dotenv').config();  //Safe to include for local; only affects local dev
 const VISITOR_TIME_LIMIT = process.env.VISITOR_TIME_LIMIT; // for use with Heroku.  Add variable to Heroku
 const ENVOY_API_TOKEN = process.env.ENVOY_API_TOKEN;  // for use with Heroku. Add variable to Heroku
 
