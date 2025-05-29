@@ -13,7 +13,7 @@ const axios = require('axios');
 const app = express();
 
 
-//app.use(middleware());
+app.use(middleware());
 app.use(bodyParser.json());
 
 
