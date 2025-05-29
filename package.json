@@ -1,0 +1,23 @@
+{
+  "name": "visitortimelimitnotifier",
+  "version": "1.0.0",
+  "description": "Visitor TimeLimit Notifier",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+  "node": "11.x"
+  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarrenHayes/VisitorTimeLimitNotifier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarrenHayes/VisitorTimeLimitNotifier/issues"
+  },
+  "homepage": "https://github.com/DarrenHayes/VisitorTimeLimitNotifier#readme"
+}
