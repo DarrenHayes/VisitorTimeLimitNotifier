@@ -12,22 +12,21 @@ const axios = require('axios');
 // Create an instance of Express
 const app = express();
 
-// Define the port the server will run on
-//const PORT = 3000;  //for local testing
-const PORT = process.env.PORT || 3000;
 
 //app.use(middleware());
 app.use(bodyParser.json());
 
 
-
+// Define the port the server will run on
+//const PORT = 3000;  //for local testing
+const PORT = process.env.PORT || 3000;
 
 // Middleware: Parse JSON requests
 app.use(express.json());
 
-// Basic root route to test.
+// Basic route for local test
 app.get('/', (req, res) => {
-  res.send('Envoy Visitor Time Limit Notifier is running!');
+  res.send('Hello, World! Welcome to my Time Limot Notifier app.');
 });
 
 // Health check endpoint
@@ -35,17 +34,20 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 //place VisitorTimeLimitNotifier route here
-app.post('/visitor-signed-out', async (req, res) => {
+app.post('/webhook/visitor-signed-out', async (req, res) => {
   try {
     const { payload } = req.body;
     const visitor = payload.visitor;
     const visitorId = visitor.id;
 
-    const signedIn = new Date(visitor.signedInTimestamp);
-    const signedOut = new Date(visitor.signedOutTimestamp);
+    const signedIn = new Date(visitor.signed_in_at);
+    const signedOut = new Date(visitor.signed_out_at);
     const duration = Math.round((signedOut - signedIn) / 60000); // duration in minutes
 
     // Retrieve the configured time limit from your storage or environment
@@ -66,11 +68,6 @@ app.post('/visitor-signed-out', async (req, res) => {
         }
       );
     }
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
 
     res.sendStatus(200);
   } catch (error) {
