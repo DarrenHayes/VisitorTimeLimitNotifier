@@ -44,8 +44,8 @@ app.post('/visitor-signed-out', async (req, res) => {
     const visitor = payload.visitor;
     const visitorId = visitor.id;
 
-    const signedIn = new Date(visitor.signed_in_at);
-    const signedOut = new Date(visitor.signed_out_at);
+    const signedIn = new Date(visitor.signedInTimestamp);
+    const signedOut = new Date(visitor.signedOutTimestamp);
     const duration = Math.round((signedOut - signedIn) / 60000); // duration in minutes
 
     // Retrieve the configured time limit from your storage or environment
