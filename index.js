@@ -26,14 +26,14 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // Basic root route to test.
-//app.get('/', (req, res) => {
-//  res.send('Envoy Visitor Time Limit Notifier is running!');
-//});
+app.get('/', (req, res) => {
+  res.send('Envoy Visitor Time Limit Notifier is running!');
+});
 
 // Health check endpoint
-//app.get('/health', (req, res) => {
-//  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
-//});
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+});
 
 
 
