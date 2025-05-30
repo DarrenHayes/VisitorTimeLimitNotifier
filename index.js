@@ -24,10 +24,10 @@ const PORT = process.env.PORT || 3000;
 // Middleware: Parse JSON requests
 app.use(express.json());
 
-// Basic route for local test
-//app.get('/', (req, res) => {
-//  res.send('Hello, World! Welcome to my Node.js app.');
-//});
+// Basic root route to test.
+app.get('/', (req, res) => {
+  res.send('Envoy Visitor Time Limit Notifier is running!');
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
