@@ -12,35 +12,33 @@ const axios = require('axios');
 // Create an instance of Express
 const app = express();
 
-
-app.use(middleware());
-app.use(bodyParser.json());
-
-
 // Define the port the server will run on
 //const PORT = 3000;  //for local testing
 const PORT = process.env.PORT || 3000;
+
+//app.use(middleware());
+app.use(bodyParser.json());
+
+
+
 
 // Middleware: Parse JSON requests
 app.use(express.json());
 
 // Basic root route to test.
-app.get('/', (req, res) => {
-  res.send('Envoy Visitor Time Limit Notifier is running!');
-});
+//app.get('/', (req, res) => {
+//  res.send('Envoy Visitor Time Limit Notifier is running!');
+//});
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
-});
+//app.get('/health', (req, res) => {
+//  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+//});
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
 
 //place VisitorTimeLimitNotifier route here
-app.post('/webhook/visitor-signed-out', async (req, res) => {
+app.post('/visitor-signed-out', async (req, res) => {
   try {
     const { payload } = req.body;
     const visitor = payload.visitor;
@@ -68,6 +66,11 @@ app.post('/webhook/visitor-signed-out', async (req, res) => {
         }
       );
     }
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 
     res.sendStatus(200);
   } catch (error) {
