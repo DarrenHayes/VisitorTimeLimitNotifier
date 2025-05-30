@@ -40,14 +40,14 @@ app.listen(PORT, () => {
 });
 
 //place VisitorTimeLimitNotifier route here
-app.post('/webhook/visitor-signed-out', async (req, res) => {
+app.post('/visitor-signed-out', async (req, res) => {
   try {
     const { payload } = req.body;
     const visitor = payload.visitor;
     const visitorId = visitor.id;
 
-    const signedIn = new Date(visitor.signed_in_at);
-    const signedOut = new Date(visitor.signed_out_at);
+    const signedIn = new Date(visitor.signedInTimestamp);
+    const signedOut = new Date(visitor.signedOutTimestamp);
     const duration = Math.round((signedOut - signedIn) / 60000); // duration in minutes
 
     // Retrieve the configured time limit from your storage or environment
