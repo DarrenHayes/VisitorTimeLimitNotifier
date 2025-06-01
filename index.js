@@ -12,7 +12,7 @@ app.post('/visitor-sign-out', (req, res) => {
 
   // Extract visitor info and custom time limit from config
   const { signedInTimestamp, signedOutTimestamp, fullName } = event.payload.visitor;
-  const allowedMinutes = parseInt(event.config.allowed_minutes, 10);
+  const allowedMinutes = parseInt(event.config.VISITOR_TIME_LIMIT, 10);
 
   const durationMs = new Date(signedOutTimestamp) - new Date(signedInTimestamp);
   const durationMin = Math.round(durationMs / 60000);
