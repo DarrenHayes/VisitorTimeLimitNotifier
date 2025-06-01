@@ -40,7 +40,7 @@ app.listen(PORT, () => {
 });
 
 //place VisitorTimeLimitNotifier route here
-app.post('/visitor-signed-out', async (req, res) => {
+app.post('/visitor-sign-out', async (req, res) => {
   try {
     const { payload } = req.body;
     const visitor = payload.visitor;
