@@ -14,6 +14,7 @@ const app = express();
 
 
 //app.use(middleware());
+//Parse incoming JSON requests
 app.use(bodyParser.json());
 
 
@@ -42,6 +43,7 @@ app.listen(PORT, () => {
 //place VisitorTimeLimitNotifier route here
 app.post('/visitor-sign-out', async (req, res) => {
   try {
+    const event = req.body;
     const { payload } = req.body;
     const visitor = payload.visitor;
     const visitorId = visitor.id;
@@ -69,7 +71,7 @@ app.post('/visitor-sign-out', async (req, res) => {
       );
     }
 
-    res.sendStatus(200);
+    return res.status(200).json({ message });
   } catch (error) {
     console.error('Webhook error:', error.message);
     res.sendStatus(500);
