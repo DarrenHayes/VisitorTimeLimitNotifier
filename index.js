@@ -70,8 +70,7 @@ app.post('/visitor-sign-out', async (req, res) => {
         }
       );
     }
-
-    return res.status(200).json({ message });
+    return res.sendStatus(200).json({ message });
   } catch (error) {
     console.error('Webhook error:', error.message);
     res.sendStatus(500);
