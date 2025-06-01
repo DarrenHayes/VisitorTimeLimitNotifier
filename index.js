@@ -25,7 +25,7 @@ app.post('/visitor-sign-out', (req, res) => {
     ? `⚠️ ${fullName} overstayed by ${durationMin - allowedMinutes} minutes.`
     : `✅ ${fullName} left on time.`;
 
-  return res.status(200).json({ message });
+  res.status(200).json({ message });
 });
 
 app.listen(PORT, () => {
