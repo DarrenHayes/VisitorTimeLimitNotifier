@@ -1,5 +1,7 @@
 # VisitorTimeLimitNotifier
-Visitor TimeLimit Notifier
+Name: Visitor TimeLimit Notifier
+Location:  https://dashboard.envoy.com/apps
+Created:  June 1, 2025
 
 # Envoy Visitor Time Limit Notifier
 
@@ -17,17 +19,17 @@ This Node.js application integrates with the [Envoy Platform](https://envoy.com/
 ### Prerequisites
 
 - Node.js v16+
-- Envoy dashboard access with developer privileges
-- Heroku CLI installed and logged in
+- Envoy dashboard access with developer privileges:  https://dashboard.envoy.com/ 
+- Heroku CLI installed and logged in.  https://devcenter.heroku.com/articles/heroku-cli 
 
 ### Deployment Steps
 
 1. Clone the repo:  
-   `git clone https://github.com/your-username/envoy-visitor-notifier.git`
+   `git clone https://github.com/DarrenHayes/VisitorTimeLimitNotifier.git`
 
-2. Add environment config if needed in `.env` or `config.js`.
+2. Add environment config if needed in `.env` or `config.js`.  Config steps can be found here: 
 
 3. Deploy to Heroku:  
    ```bash
-   heroku create your-envoy-app-name  
+   heroku create your-app-name
    git push heroku main
