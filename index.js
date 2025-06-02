@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // Parse incoming JSON requests
 app.use(bodyParser.json());
 
-app.post('/webhook/visitor-sign-out', (req, res) => {
+app.post('/visitor-sign-out', (req, res) => {
 // Always respond immediately
   //res.status(200).send('OK');
   const event = req.body;
@@ -25,7 +25,7 @@ app.post('/webhook/visitor-sign-out', (req, res) => {
     ? `⚠️ ${fullName} overstayed by ${durationMin - allowedMinutes} minutes.`
     : `✅ ${fullName} left on time.`;
 
-  res.status(200).json({ message });
+  return res.status(200).json({message});
 });
 
 app.listen(PORT, () => {
