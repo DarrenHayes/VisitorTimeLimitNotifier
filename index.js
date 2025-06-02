@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // Parse incoming JSON requests
 app.use(bodyParser.json());
 
-app.post('/visitor-sign-out', (req, res) => {
+app.post('/webhook/visitor-sign-out', (req, res) => {
 // Always respond immediately
   //res.status(200).send('OK');
   const event = req.body;
