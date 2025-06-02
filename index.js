@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.post('/visitor-sign-out', (req, res) => {
+app.post('/visitor-sign-out', async (req, res) => {
   try {
     const event = req.body;
     const config = event.config || {};
