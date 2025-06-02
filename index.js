@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+//app.use(express.json());
 
 // Parse incoming JSON requests
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 app.post('/visitor-sign-out', (req, res) => {
 // Always respond immediately
