@@ -22,8 +22,8 @@ app.post('/visitor-sign-out', (req, res) => {
   const durationMin = Math.round(durationMs / 60000);
 
   const message = durationMin > allowedMinutes
-    ? `⚠️ ${fullName} overstayed by ${durationMin - allowedMinutes} minutes.`
-    : `✅ ${fullName} left on time.`;
+    ? `${fullName} overstayed by ${durationMin - allowedMinutes} minutes.`
+    : `${fullName} left on time.`;
 
   return res.status(200).json({message});
 });
