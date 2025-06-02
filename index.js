@@ -8,7 +8,7 @@ app.use(express.json());
 // Parse incoming JSON requests
 //app.use(bodyParser.json());
 
-app.post('/visitor-signed-out', (req, res) => {
+app.post('/visitor-sign-out', (req, res) => {
   try {
     const event = req.body;
     if (!event?.payload?.visitor) throw new Error("Missing visitor data");
