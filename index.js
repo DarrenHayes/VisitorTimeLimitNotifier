@@ -8,7 +8,7 @@ app.use(express.json());
 // Parse incoming JSON requests
 //app.use(bodyParser.json());
 
-app.post('/visitor-sign-out', (req, res) => {
+app.post('/visitor-sign-out', async (req, res) => {
   try {
     const event = req.body;
     if (!event?.payload?.visitor) throw new Error("Missing visitor data");
@@ -24,10 +24,10 @@ app.post('/visitor-sign-out', (req, res) => {
       : `✅ ${fullName} left on time.`;
 
     console.log("Result:", message);
-    return res.status(200).json({ message });
+    return res.status(200).json({ message: "✅ Webhook received" });
 
   } catch (error) {
-    console.error("Error processing visitor-signed-out:", error.message);
+    console.error("Error processing visitor-sign-out:", error.message);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
