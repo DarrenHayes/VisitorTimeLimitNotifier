@@ -27,7 +27,7 @@ This Node.js application integrates with the [Envoy Platform](https://envoy.com/
 1. Clone the repo:  
    `git clone https://github.com/DarrenHayes/VisitorTimeLimitNotifier.git`
 
-2. Add environment config if needed in `.env` or `config.js`.  Config steps can be found here: 
+2. Add environment config if needed in `.env` or `config.js`.  Config steps: https://developers.envoy.com/hub/docs/nodejs
 
 3. Deploy to Heroku:  
    ```bash
