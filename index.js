@@ -1,12 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(express.json());
 
 app.post('/visitor-sign-out', async (req, res) => {
   try {
