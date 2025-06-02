@@ -21,8 +21,10 @@ app.post('/visitor-sign-out', async (req, res) => {
     }
 
     const visitor = event.payload.visitor;
-    const signedInTime = new Date(visitor.signedInTimestamp);
-    const signedOutTime = new Date(visitor.signedOutTimestamp);
+    //const signedInTime = new Date(visitor.signedInTimestamp);
+    //const signedOutTime = new Date(visitor.signedOutTimestamp);
+    const signedInTime = new Date(visitor.signed_in_at);
+    const signedOutTime = new Date(visitor.signed_out_at);
     const durationMinutes = Math.round((signedOutTime - signedInTime) / 60000);
     const fullName = visitor.fullName;
 
