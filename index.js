@@ -1,37 +1,42 @@
 const express = require('express');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const app = express();
+dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(bodyParser.json());
 
-// Parse incoming JSON requests
-//app.use(bodyParser.json());
-
-app.post('/visitor-sign-out', async (req, res) => {
+app.post('/visitor-sign-out', (req, res) => {
   try {
     const event = req.body;
-    if (!event?.payload?.visitor) throw new Error("Missing visitor data");
+    const config = event.config || {};
+    const allowedMinutes = parseInt(config.VISITOR_TIME_LIMIT, 10);
 
-    const { signedInTimestamp, signedOutTimestamp, fullName } = event.payload.visitor;
-    const allowedMinutes = parseInt(event.config.VISITOR_TIME_LIMIT, 10);
+    if (isNaN(allowedMinutes) || allowedMinutes < 0 || allowedMinutes > 180) {
+      console.error('Invalid VISITOR_TIME_LIMIT configuration.');
+      return res.status(400).json({ error: 'Invalid VISITOR_TIME_LIMIT configuration.' });
+    }
 
-    const durationMs = new Date(signedOutTimestamp) - new Date(signedInTimestamp);
-    const durationMin = Math.round(durationMs / 60000);
+    const visitor = event.payload.visitor;
+    const signedInTime = new Date(visitor.signedInTimestamp);
+    const signedOutTime = new Date(visitor.signedOutTimestamp);
+    const durationMinutes = Math.round((signedOutTime - signedInTime) / 60000);
+    const fullName = visitor.fullName;
 
-    const message = durationMin > allowedMinutes
-      ? `⚠️ ${fullName} overstayed by ${durationMin - allowedMinutes} minutes.`
+    const message = durationMinutes > allowedMinutes
+      ? `⚠️ ${fullName} overstayed by ${durationMinutes - allowedMinutes} minutes.`
       : `✅ ${fullName} left on time.`;
 
-    console.log("Result:", message);
-    return res.status(200).json({ message: "✅ Webhook received" });
+    console.log(message);
+    return res.status(200).json({ message });
 
-  } catch (error) {
-    console.error("Error processing visitor-sign-out:", error.message);
-    return res.status(500).json({ error: "Internal Server Error" });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
