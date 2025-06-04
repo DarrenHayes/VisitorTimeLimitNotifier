@@ -34,15 +34,15 @@ app.post('/visitor-sign-out', async (req, res) => {
 
     //Add guards to prevent crashing silently.  Explicitly log and handle missing or malformed payloads.
     const visitor = event?.payload?.visitor;
-    if (!visitor || !visitor.signedInTimestamp || !visitor.signedOutTimestamp) {
+    if (!visitor || !visitor.signed_in_at || !visitor.signed_out_at) {
       console.error('Missing required visitor timestamps.');
       return res.status(400).json({ error: 'Missing visitor timestamps.' });
     }
 
     // Extract visitor sign-in and sign-out timestamps from the payload
     //const visitor = event.payload.visitor;
-    const signedInTime = new Date(visitor.signedInTimestamp);
-    const signedOutTime = new Date(visitor.signedOutTimestamp);
+    const signedInTime = new Date(visitor.signed_in_at);
+    const signedOutTime = new Date(visitor.signed_out_at);
     // Calculate the visit duration in minutes
     const durationMinutes = Math.round((signedOutTime - signedInTime) / 60000);
     // Extract visitor's full name for messaging
