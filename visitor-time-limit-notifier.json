@@ -1,0 +1,76 @@
+{
+  "name": "Visitor Time Limit Notifier",
+  "description": "Notifies if a visitor exceeds their allotted time on-premises.",
+  "isModerated": true,
+  "isPrivate": true,
+  "releaseStatus": "deployed",
+  "releaseNotes": null,
+  "uses": [
+    "internal"
+  ],
+  "scopes": [
+    "entries.read",
+    "entries.write",
+    "sign-in-fields.read",
+    "sign-in-fields.write"
+  ],
+  "installableOn": [],
+  "purposes": [],
+  "externalURL": "",
+  "notificationSettings": {
+    "id": "d25ef484-41c0-4fb7-b64f-4e8e8268d9eb",
+    "handler": "https://envoy.com/event-fired",
+    "triggerName": "1986ae4a-38db-4db3-9a20-e9a51e628227_notification",
+    "invocationURL": "https://envoy.com/event-fired",
+    "invocationFormatVersion": "V2"
+  },
+  "redirectURIs": "",
+  "category": {
+    "label": "Communication",
+    "value": "host-notifications"
+  },
+  "logoURL": "https://dashboard.envoy.com/assets/images/logo-small-red.svg",
+  "smallLogoURL": "https://dashboard.envoy.com/assets/images/logo-small-red.svg",
+  "events": [
+    {
+      "webhookURL": "https://visitortimelimitnotifier-e708c33de776.herokuapp.com/visitor-sign-out",
+      "trigger": {
+        "label": "Visitor sign-out",
+        "value": "entry_sign_out"
+      }
+    }
+  ],
+  "featureHooks": [],
+  "appExtensions": [],
+  "steps": [
+    {
+      "name": "Set Visitor Time Limit",
+      "type": {
+        "label": "Form",
+        "value": "form"
+      },
+      "validationURL": "",
+      "multitenant": false,
+      "canSkipStep": false,
+      "didCompleteStepKey": "",
+      "fields": [
+        {
+          "label": "Allowed Duration (minutes)",
+          "note": "Visitors are allowed to stay up to 180 minutes. Select a time interval.",
+          "type": {
+            "label": "Duration",
+            "value": "duration"
+          },
+          "dataKey": "VISITOR_TIME_LIMIT",
+          "required": true,
+          "interval": {
+            "label": "10 minutes",
+            "value": 10
+          },
+          "duration": 3,
+          "tooltipText": "Visitors are allowed to stay up to 180 minutes. Select a time interval."
+        }
+      ]
+    }
+  ]
+}
